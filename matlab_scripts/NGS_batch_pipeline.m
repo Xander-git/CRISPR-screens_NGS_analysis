@@ -1,4 +1,4 @@
-function [] = NGS_batch_pipeline(collection, adapters)
+function [] = NGS_batch_pipeline(collection, read_dir, adapters)
 disp("-------------------------------------------------------------------")
 fprintf(">> [%s] STARTING EXECUTION(sgRNA_batch_pipelineX)...", datetime('now',Format='default'))
 NGS_SETTINGS = NGS_settings();
@@ -26,9 +26,11 @@ for i = 1:length(samples)
         datetime('now',Format='default'), string(samples(i)));
     fprintf(log,msg);
     fprintf(msg)
+
     [status,msg,err] = NGS_pipeline( ...
-        collection,samples(i), ...
+        collection, read_dir, samples(i), ...
         adapters);
+
     fprintf(log,msg);
     if ~status
         fprintf(log,err.getReport('extended','hyperlinks','off'));
