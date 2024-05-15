@@ -1,5 +1,5 @@
     %% Input Settings
-    function [status, msg, err] = step1_import_fastq(collection, read_dir, sample_name, adapter)
+    function [status, msg, err] = step1_import_fastq(collection, sample_name, read_dir, adapter)
     NGS_SETTINGS = NGS_settings();
     func_name="step1_import_fastq";
     try
@@ -36,7 +36,7 @@
         %% Check for gzip
         if read_fType==".fastqsanger.gz"
             fprintf(strcat(">> Beginning decompression of ","'",fpath_read_dataset,"' with adapter ",adapter,"...\n"))
-            gunzip(fpath_read_dataset);
+            gunzip(fpath_read_dataset,);
             fpath_read_dataset = galaxy_collection_dir + sample_name + "/" + read_dir + "/" + adapter + ".fastqsanger";
         end
 

@@ -1,4 +1,4 @@
-function [status, msg, err] = NGS_pipeline(collection, read_dir, sample, adapters)
+function [status, msg, err] = NGS_pipeline(collection, sample, read_dir,adapters)
     NGS_SETTINGS = NGS_settings();
     func_name="sgRNA_pipelineX";
     disp("-------------------------------------------------------------------")
