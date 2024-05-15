@@ -10,6 +10,7 @@
         collection = string(collection);
         sample_name = string(sample_name);
         read_dir = string(read_dir);
+        adapter = string(adapter);
         
         galaxy_dir = NGS_SETTINGS.galaxy_dir;
         mat_workspace = NGS_SETTINGS.mat_workspace_dir;
