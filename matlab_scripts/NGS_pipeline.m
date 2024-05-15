@@ -36,7 +36,8 @@ function [status, msg, err] = NGS_pipeline(collection, sample, read_dir, adapter
         if starting_step<=1
             step1_start=tic;
             for i=1:length(adapters)
-                [status,msg,err] = step1_import_fastq(collection, sample, read_dir, string(adapters(i)));
+                adapter = string(adapters(i));
+                [status,msg,err] = step1_import_fastq(collection, sample, read_dir, adapter);
                 fprintf(log,msg);
                 if ~status
                     rethrow(err)
