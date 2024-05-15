@@ -13,7 +13,7 @@ folder_info = dir(strcat(NGS_SETTINGS.galaxy_dir,collection,"/"));
 sample_idx = find(vertcat(folder_info.isdir));
 samples = folder_info(sample_idx); %#ok<FNDSB> 
 samples = {samples.name};
-samples = samples(3:length(samples)) %#ok<NOPRT> 
+samples = samples(2:length(samples)) %#ok<NOPRT> 
 
 
 batch_start = tic;
