@@ -12,7 +12,7 @@
         read_dir = string(read_dir);
         
         galaxy_dir = NGS_SETTINGS.galaxy_dir;
-        mat_workspace = NGS_SETTINGS.mat_workspace;
+        mat_workspace = NGS_SETTINGS.mat_workspace_dir;
 
         galaxy_collection_dir = galaxy_dir + collection + "/";
         
