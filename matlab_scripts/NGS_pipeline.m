@@ -1,6 +1,6 @@
 function [status, msg, err] = NGS_pipeline(collection, sample, read_dir,adapters)
     NGS_SETTINGS = NGS_settings();
-    func_name="sgRNA_pipelineX";
+    func_name="NGS_pipeline";
     disp("-------------------------------------------------------------------")
     
     warning('off',"MATLAB:MKDIR:DirectoryExists")
@@ -24,6 +24,7 @@ function [status, msg, err] = NGS_pipeline(collection, sample, read_dir,adapters
     parpool_timeout = NGS_SETTINGS.parpool_timeout %#ok<NOPRT> 
     throw_err = NGS_SETTINGS.throw_exception %#ok<NOPRT> 
 
+    read_dir = string(read_dir)
     collection = string(collection) %#ok<NOPRT> 
     sample = string(sample) %#ok<NOPRT> 
 
@@ -35,7 +36,7 @@ function [status, msg, err] = NGS_pipeline(collection, sample, read_dir,adapters
         if starting_step<=1
             step1_start=tic;
             for i=1:length(adapters)
-                [status,msg,err] = step1_import_fastq(collection,sample,read_dir,adapters(i));
+                [status,msg,err] = step1_import_fastq(collection, sample, read_dir, adapters(i));
                 fprintf(log,msg);
                 if ~status
                     rethrow(err)

@@ -26,10 +26,6 @@
         mkdir(collection_mat_dir);
         mkdir(sample_mat_dir);
         
-        
-
-
-
         fpath_read_dataset = strcat(galaxy_collection_dir, sample_name, "/",read_dir,"/",adapter, read_fType) %#ok<NOPRT> 
         fpath_output = strcat(sample_mat_dir,"/",sample_name,"_",adapter, ".mat") %#ok<NOPRT> 
         
