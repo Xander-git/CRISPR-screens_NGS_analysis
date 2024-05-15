@@ -3,9 +3,6 @@ disp("-------------------------------------------------------------------")
 fprintf(">> [%s] STARTING EXECUTION(sgRNA_batch_pipelineX)...", datetime('now',Format='default'))
 NGS_SETTINGS = NGS_settings();
 
-% Test Case
-% category="2023-11-28"
-
 warning('off',"MATLAB:MKDIR:DirectoryExists")
 mkdir("../log");
 log = fopen('../log/batch_pipeline_log.txt','w');
@@ -27,9 +24,7 @@ for i = 1:length(samples)
     fprintf(log,msg);
     fprintf(msg)
 
-    [status,msg,err] = NGS_pipeline( ...
-        collection, samples(i), read_dir, ...
-        adapters);
+    [status,msg,err] = NGS_pipeline( collection, samples(i), read_dir, adapters);
 
     fprintf(log,msg);
     if ~status
