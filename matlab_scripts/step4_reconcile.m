@@ -13,7 +13,7 @@ function [status,msg,err] = step4_reconcile(collection,sample_name,adapter)
         adapter_name = string(adapter);
         
         fpath_mat_data = sprintf("%s%s/%s/%s_%s.mat",...
-            NGS_SETTINGS.mat_workspace, collection, sample_name, sample_name, adapter_name);
+            NGS_SETTINGS.mat_workspace_dir, collection, sample_name, sample_name, adapter_name);
         load(fpath_mat_data,"GUIDE_RNA_SEQUENCE","NEM","BOWTIE")
         whos GUIDE_RNA_SEQUENCE NEM BOWTIE
         

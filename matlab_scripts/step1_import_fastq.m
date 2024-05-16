@@ -64,8 +64,8 @@
         
         
         if read_fType==".fastqsanger.gz"
-            fprintf(strcat(">> Beginning compression of ","'",fpath_read_dataset,"' with adapter ",adapter,"...\n"))
-            gzip(fpath_read_dataset);
+            fprintf(strcat(">> Deleting uncompressed file ","'",fpath_read_dataset,"' with adapter ",adapter,"...\n"))
+            delete(fpath_read_dataset);
         end
 
         status=true;
