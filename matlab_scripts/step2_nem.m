@@ -17,7 +17,7 @@ function [status,msg,err] = step2_nem(collection,sample_name,adapter)
         fpath_mat_data = mat_workspace_dir + collection + "/" + sample_name + "/" + strcat(sample_name,"_",adapter_name,".mat");
         
         disp(">> Loading Variables From step1_import_fastq...")
-        load(fpath_mat_data,"SAMPLE_SEQUENCE","ABUNDANCE")
+        load(fpath_mat_data,"READ_SEQUENCE","ABUNDANCE")
         disp(">> Loading Guide RNA Library...")
         load(fpath_guide_data,"guide_table")
         
@@ -29,12 +29,12 @@ function [status,msg,err] = step2_nem(collection,sample_name,adapter)
         
         clearvars guide_table
         % start = datetime('now');
-        whos GUIDE_RNA_SEQUENCE NEM SAMPLE_SEQUENCE ABUNDANCE
+        whos GUIDE_RNA_SEQUENCE NEM READ_SEQUENCE ABUNDANCE
         
-        disp(strcat(">> Starting NEM with Library_Size:",string(lib_sz)," & Sample_Size:",string(length(SAMPLE_SEQUENCE)),"..."))
+        disp(strcat(">> Starting NEM with Library_Size:",string(lib_sz)," & Sample_Size:",string(length(READ_SEQUENCE)),"..."))
         parfor i=1:lib_sz
         
-            w1 = find( contains(SAMPLE_SEQUENCE, GUIDE_RNA_SEQUENCE(i) ) )
+            w1 = find( contains(READ_SEQUENCE, GUIDE_RNA_SEQUENCE(i) ) )
             if ~any(w1)
                 NEM(i,1)=0;
             else
