@@ -23,7 +23,6 @@ function Params = NGS_settings()
     % Must convert library to .mat table. This speeds up the algorithm
     % If the guide_table_file has not been made yet use"
     %   guide_rna_csv2table("<guide_rna.csv>")
-    Params.guide_type_dir = "Cas9/";
     Params.guide_table_file = "Cas9_Opt.mat";
     
     %% Background Filepaths (shouldn't need to change)
