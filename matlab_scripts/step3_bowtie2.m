@@ -79,7 +79,7 @@ function [status,msg,err]=step3_bowtie2(collection, sample_name, adapter)
         end
         
         load(fpath_guide_library,"guide_table");
-        guide_table = table2cell(guide_table)
+        guide_lib = table2cell(guide_table)
         %% Concatenate Start Positions and Flags
         
         % Start positions of every sgRNA in the current reads file is recorded.
@@ -188,7 +188,7 @@ function [status,msg,err]=step3_bowtie2(collection, sample_name, adapter)
         % nt wiggle room in true start position. Only true start positions are
         % considered for these sgRNA.
         
-        Ap=cell2mat(guide_table(:,4));
+        Ap=cell2mat(guide_lib(:,4));
         c=1;
         for i=1:length(Ap)-1
             diff=Ap(i+1)-Ap(i);
