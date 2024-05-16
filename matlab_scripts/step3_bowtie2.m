@@ -56,7 +56,7 @@ function [status,msg,err]=step3_bowtie2(collection, sample_name, adapter)
         sample_name = string(sample_name);
         adapter_name = string(adapter);
         
-        fpath_guide_library = NGS_SETTINGS.guide_lib_dir + NGS_SETTINGS.guide_type_dir + NGS_SETTINGS.guide_table_file;
+        fpath_guide_library = NGS_SETTINGS.guide_lib_dir + NGS_SETTINGS.guide_table_file;
         fpath_bam_dataset = strcat(galaxy_dataset_dir, sample_name, "/", NGS_SETTINGS.bam_dir, adapter_name, ".bam"); 
         fpath_mat_data = strcat(NGS_SETTINGS.mat_workspace,collection,"/",sample_name,"/",sample_name,"_",adapter_name,".mat");
         

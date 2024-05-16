@@ -11,7 +11,7 @@ function [status,msg,err] = step2_nem(collection,sample_name,adapter)
         collection = string(collection);
         
         mat_workspace_dir = NGS_SETTINGS.mat_workspace_dir;
-        fpath_guide_data = NGS_SETTINGS.guide_lib_dir + NGS_SETTINGS.guide_type_dir + NGS_SETTINGS.guide_table_file;
+        fpath_guide_data = NGS_SETTINGS.guide_lib_dir + NGS_SETTINGS.guide_table_file;
 
         
         fpath_mat_data = mat_workspace_dir + collection + "/" + sample_name + "/" + strcat(sample_name,"_",adapter_name,".mat");
