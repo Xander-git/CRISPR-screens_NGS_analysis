@@ -52,15 +52,15 @@
             end
         end
         Seq=sequence';
-        [SAMPLE_SEQUENCE, ABUNDANCE]=count_unique(Seq);
+        [READ_SEQUENCE, ABUNDANCE]=count_unique(Seq);
         disp(">> ...Finished Import & Abundance Counting")
 
-        sample_table = table(SAMPLE_SEQUENCE, ABUNDANCE);
+        sample_table = table(READ_SEQUENCE, ABUNDANCE);
         head(sample_table)
         whos S1 N1
 
         disp(">> Saving Sample Sequences & Abundance Counts...")
-        save(fpath_output,"SAMPLE_SEQUENCE","ABUNDANCE",'-v7.3') % S: sequence, N: Unique Counts
+        save(fpath_output,"READ_SEQUENCE","ABUNDANCE",'-v7.3') % S: sequence, N: Unique Counts
         
         
         if read_fType==".fastqsanger.gz"
