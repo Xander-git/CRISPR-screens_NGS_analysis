@@ -79,6 +79,7 @@ function [status,msg,err]=step3_bowtie2(collection, sample_name, adapter)
         end
         
         load(fpath_guide_library,"guide_table");
+        guide_table = table2cell(guide_table)
         %% Concatenate Start Positions and Flags
         
         % Start positions of every sgRNA in the current reads file is recorded.
