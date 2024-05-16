@@ -2,7 +2,6 @@
 function [status,msg,err] = step4_reconcile(collection,sample_name,adapter)
     NGS_SETTINGS = NGS_settings();
     func_name="step4_reconcile";
-    clearvars -except func_name date sample adapter
 
     try
         %%

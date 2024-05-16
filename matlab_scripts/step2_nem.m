@@ -1,7 +1,6 @@
 function [status,msg,err] = step2_nem(collection,sample_name,adapter)
     NGS_SETTINGS = NGS_settings();
     func_name="step2_nem";
-    clearvars -except func_name date sample adapter
     try
         disp("-------------------------------------------------------------------")
         fprintf(">> [%s] STARTING EXECUTION(%s)...\n", ...
