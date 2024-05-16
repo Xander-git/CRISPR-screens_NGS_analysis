@@ -24,7 +24,7 @@ function [status, msg, err] = NGS_pipeline(collection, sample, read_dir, adapter
     parpool_timeout = NGS_SETTINGS.parpool_timeout %#ok<NOPRT> 
     throw_err = NGS_SETTINGS.throw_exception %#ok<NOPRT> 
 
-    read_dir = string(read_dir)
+    read_dir = string(read_dir);
     collection = string(collection) %#ok<NOPRT> 
     sample = string(sample) %#ok<NOPRT> 
 
@@ -37,6 +37,7 @@ function [status, msg, err] = NGS_pipeline(collection, sample, read_dir, adapter
             step1_start=tic;
             for i=1:length(adapters)
                 adapter = string(adapters(i));
+                disp(read_dir)
                 [status,msg,err] = step1_import_fastq(collection, sample, read_dir, adapter);
                 fprintf(log,msg);
                 if ~status

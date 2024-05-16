@@ -1,12 +1,12 @@
     %% Input Settings
     function [status, msg, err] = step1_import_fastq(collection, sample_name, read_dir, adapter)
-    NGS_SETTINGS = NGS_settings();
     func_name="step1_import_fastq";
+
     try
         disp("-------------------------------------------------------------------")
         fprintf(">> [%s] STARTING EXECUTION(%s)...\n",...
             datetime('now',Format='default'),func_name)
-        
+        NGS_SETTINGS = NGS_settings();
         collection = string(collection);
         sample_name = string(sample_name);
         read_dir = string(read_dir);
@@ -19,20 +19,21 @@
         
         read_fType = NGS_SETTINGS.read_filetype;
         collection_mat_dir = mat_workspace + collection + "/";
-        sample_mat_dir = collection_mat_dir + "/" + sample_name %#ok<NOPRT> 
+        sample_mat_dir = collection_mat_dir + sample_name; %#ok<NOPRT> 
+        read_fpath= galaxy_collection_dir + sample_name + "/" + read_dir + "/";
         
         warning('off',"MATLAB:MKDIR:DirectoryExists")
         mkdir(mat_workspace);
         mkdir(collection_mat_dir);
         mkdir(sample_mat_dir);
         
-        fpath_read_dataset = strcat(galaxy_collection_dir, sample_name, "/",read_dir,"/",adapter, read_fType) %#ok<NOPRT> 
+        fpath_read_dataset = strcat(read_fpath,adapter, read_fType) %#ok<NOPRT> 
         fpath_output = strcat(sample_mat_dir,"/",sample_name,"_",adapter, ".mat") %#ok<NOPRT> 
         
         %% Check for gzip
         if read_fType==".fastqsanger.gz"
             fprintf(strcat(">> Beginning decompression of ","'",fpath_read_dataset,"' with adapter ",adapter,"...\n"))
-            gunzip(fpath_read_dataset,);
+            gunzip(fpath_read_dataset,read_fpath);
             fpath_read_dataset = galaxy_collection_dir + sample_name + "/" + read_dir + "/" + adapter + ".fastqsanger";
         end
 
