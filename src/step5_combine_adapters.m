@@ -32,13 +32,14 @@ function [status,msg,err] = step5_combine_adapters(collection, sample_name, adap
         full_count = table(guide_rna_id, sequence,cutting_score, guide_position, library_design_information, 'VariableNames', full_table_names);
         
         for i = 1:length(adapter_names)
-            adapter = load(strcat(fpath_mat_sample_prefix,adapter_names(i),".mat"),"FINAL_COUNT","NEM","BOWTIE");
-            count = table(adapter.FINAL_COUNT,'VariableNames',[adapter_names(i)]);
+            curr_adapter_name=string(adapter_names(i))
+            adapter = load(strcat(fpath_mat_sample_prefix,curr_adapter_name,".mat"),"FINAL_COUNT","NEM","BOWTIE");
+            count = table(adapter.FINAL_COUNT,'VariableNames',[curr_adapter_name]);
 
-            disp(">> Creating Adapter "+adapter_names(i)+" Report Table...")
+            disp(">> Creating Adapter "+curr_adapter_name+" Report Table...")
             adapter_table=table(sequence, adapter.NEM, adapter.BOWTIE, adapter.FINAL_COUNT);
             
-            writetable(adapter_table,strcat(fpath_results_sample_dir,"/",sample_name,"_",adapter_names(i),".csv"));
+            writetable(adapter_table,strcat(fpath_results_sample_dir,"/",sample_name,"_",curr_adapter_name,".csv"));
 
             disp(">> Creating Full Report Table...")
             full_count = [full_count count]; %#ok<AGROW> 
