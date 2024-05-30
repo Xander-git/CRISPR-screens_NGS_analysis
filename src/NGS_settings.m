@@ -5,6 +5,13 @@ function Params = NGS_settings()
     % For directories, 
     %   be sure to add the "/" at the end of the directory name
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% Library Settings
+    % Must convert library to .mat table. This speeds up the algorithm
+    % If the guide_table_file has not been made yet use"
+    %   guide_rna_csv2table("<guide_rna.csv>")
+    Params.guide_table_file = "Cas9_Opt.mat";
+
+
     %% Pipeline Settings
     Params.read_filetype = ".fastqsanger.gz"; %Tells matlab which file to search for in reads folder. Either ".fastqsanger" or ".fastqsanger.gz"
 
@@ -19,22 +26,15 @@ function Params = NGS_settings()
     % files.
     Params.post_pipeline_cleanup = true;
 
-    %% Library Settings
-    % Must convert library to .mat table. This speeds up the algorithm
-    % If the guide_table_file has not been made yet use"
-    %   guide_rna_csv2table("<guide_rna.csv>")
-    Params.guide_table_file = "Cas9_Opt.mat";
+
     
     %% Background Filepaths (shouldn't need to change)
     Params.galaxy_dir = "./galaxy_dataset/";
-    Params.mat_workspace_dir = "./mat_workspace/";
+    Params.mat_workspace_dir = "./data/";
     Params.guide_lib_dir = "./guide_library/";
     Params.results_dir = "./results/";
     
-    Params.bam_dir = "bowtie2_bam/";
-    Params.untrimmed_dir = "cutadapt/";
-    Params.trimmed_dir = "trimmomatic/";
-    
+    Params.bam_dir = "bowtie2_bam/";    
 
 end
 
