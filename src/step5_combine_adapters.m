@@ -15,7 +15,7 @@ function [status,msg,err] = step5_combine_adapters(collection, sample_name, adap
         fpath_results_sample_dir = strcat(fpath_results_collection_dir,sample_name,"/");
 
         fpath_mat_sample_prefix = strcat(NGS_SETTINGS.mat_workspace_dir,collection,"/",sample_name,"/",sample_name,"_");
-        fpath_guide_table = NGS_SETTINGS.guide_lib_dir + NGS_SETTINGS.guide_type_dir + NGS_SETTINGS.guide_table_file;
+        fpath_guide_table = NGS_SETTINGS.guide_lib_dir + NGS_SETTINGS.guide_table_file;
 
         warning('off',"MATLAB:MKDIR:DirectoryExists")
         mkdir(fpath_results_collection_dir);
