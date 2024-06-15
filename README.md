@@ -1,8 +1,9 @@
 # CRISPR-screens_NGS_analysis
----
 ## Installation
 1. In target directory, clone the repository
-> `$ git clone https://github.com/Xander-git/CRISPR-screens_NGS_analysis.git`
+```
+$ git clone https://github.com/Xander-git/CRISPR-screens_NGS_analysis.git
+```
 
 ## Quick Sample Analysis using an example dataset
 
@@ -68,6 +69,7 @@ Compares the NEM and bowtie2 counts of a specific adapter for a given sample and
 step5_combine_adapters(<dataset_name>,<sample_name>, {<adapter1>,... <adapterN>})
 ```
 Combines the final count for each adapter onto one table for ease of analysis.
+
 ---
 ## NGS_Settings.m
 
