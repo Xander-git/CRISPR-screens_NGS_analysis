@@ -4,7 +4,10 @@
 ```
 $ git clone https://github.com/Xander-git/CRISPR-screens_NGS_analysis.git
 ```
-
+2. (optional) From main repo diretory, unzip the example dataset for sample data to test
+```
+tar -xyzf ./galaxy_dataset/example_dataset.tar.gz-C ./galaxy_dataset
+```
 ## Quick Sample Analysis using an example dataset
 
 1. From inside the repo's main directory, run matlab from the terminal
