@@ -37,7 +37,8 @@ function [status,msg,err] = step5_combine_adapters(collection, sample_name, adap
             count = table(adapter.FINAL_COUNT,'VariableNames',[curr_adapter_name]);
 
             disp(">> Creating Adapter "+curr_adapter_name+" Report Table...")
-            adapter_table=table(sequence, adapter.NEM, adapter.BOWTIE, adapter.FINAL_COUNT);
+            NEM = adapter.NEM; BOWTIE = adapter.BOWTIE; FINAL_COUNT = adapter.FINAL_COUNT;
+            adapter_table=table(sequence, NEM, BOWTIE, FINAL_COUNT);
             
             writetable(adapter_table,strcat(fpath_results_sample_dir,"/",sample_name,"_",curr_adapter_name,".csv"));
 

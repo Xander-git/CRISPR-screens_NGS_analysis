@@ -14,11 +14,11 @@ sgRNA_galaxy_curl () {
     echo "$bowtie2_bam_url"
 
     mkdir -p "../../results/${dataset_label}/${sample_name}/"
-    mkdir -p "../${dataset_label}/${sample_name}/"
+    mkdir -p "../../galaxy_dataset/${dataset_label}/${sample_name}/"
 
     curl --parallel \
-        -o "../${dataset_label}/${sample_name}/readfile.zip" "${readfile_url}" \
-        -o "../${dataset_label}/${sample_name}/bowtie2_bam.zip" "${bowtie2_bam_url}"
+        -o "../../galaxy_dataset/${dataset_label}/${sample_name}/readfile.zip" "${readfile_url}" \
+        -o "../../galaxy_dataset/${dataset_label}/${sample_name}/bowtie2_bam.zip" "${bowtie2_bam_url}"
 
-    unzip "../${dataset_label}/${sample_name}/*" -d "../${dataset_label}/${sample_name}"   
+    unzip "../../galaxy_dataset/${dataset_label}/${sample_name}/*" -d "../../galaxy_dataset/${dataset_label}/${sample_name}"   
 }

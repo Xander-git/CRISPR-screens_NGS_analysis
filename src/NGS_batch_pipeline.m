@@ -1,6 +1,6 @@
 function [] = NGS_batch_pipeline(collection, read_dir, adapters)
 disp("-------------------------------------------------------------------")
-fprintf(">> [%s] STARTING EXECUTION(sgRNA_batch_pipelineX)...", datetime('now',Format='default'))
+fprintf(">> [%s] STARTING EXECUTION(NGS_batch_pipeline)...", datetime('now',Format='default'))
 NGS_SETTINGS = NGS_settings();
 
 warning('off',"MATLAB:MKDIR:DirectoryExists")

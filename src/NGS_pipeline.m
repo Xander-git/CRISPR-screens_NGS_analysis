@@ -15,9 +15,9 @@ function [status, msg, err] = NGS_pipeline(collection, sample, read_dir, adapter
 
     
     if NGS_SETTINGS.cpu_cores == true
-        cpu_cores = gpuDeviceCount("available");
+        cpu_cores = feature('numCores')
     else
-        cpu_cores = NGS_SETTINGS.cpu_cores;
+        cpu_cores = NGS_SETTINGS.cpu_cores
     end    
 
     starting_step =NGS_SETTINGS.start_step %#ok<NOPRT> 
@@ -77,7 +77,7 @@ function [status, msg, err] = NGS_pipeline(collection, sample, read_dir, adapter
         if starting_step<=3
             step3_start=tic;
             for i = 1:length(adapters)
-                [status,msg,err]=step3_bowtie2(collection,sample,adapters(i));
+                [status,msg,err]=step3_bowtie2_V2(collection,sample,adapters(i));
                 fprintf(log,msg);
                 if ~status
                     rethrow(err)

@@ -9,24 +9,17 @@ $ git clone https://github.com/Xander-git/CRISPR-screens_NGS_analysis.git
 
 1. From inside the repo's main directory, run matlab from the terminal
 > `CRISPR-screens_NGS_analysis$ matlab`
+
 2. Add scripts to matlab path
 > `addpath("./src");`
-3. (a) Run pipeline on dataset using the trimmed reads
-> `NGS_batch_pipeline("example_dataset", "trimmomatic",{"1665","1666"});`
-3. (b) Run pipeline on a single sample
+
+3. (a) Run pipeline on a single sample
 > `NGS_pipeline("example_dataset","sample_name", "trimmomatic",{"1665","1666"});`
+
+3. (b) Run pipeline on every sample in a dataset directory using the trimmed reads
+> `NGS_batch_pipeline("example_dataset", "trimmomatic",{"1665","1666"});`
 ---
 ## Pipeline Syntax
-### Function Parameter Definitions
-`<dataset_name>`: String with the name of the target dataset directory within the galaxy_dataset directory
-
-`<sample_name>`: String with the name of the sample to search for
-
-`<read_directory>`: String with the name of the directory to use naive exact matching on. By convention it should be `"cutadapt"` for untrimmed reads or `"trimmomatic"` for trimmed reads.
-
-`{<adapter1>,... <adapterN>}`: A cell array with the name of each adapter of interest in the form of a string or character array. 
-
-`<adapter>`: A string with the name of a single adapter
 
 ### Pipeline Run
 ```
@@ -38,7 +31,24 @@ Executes the code for step 1-5 on every adapter for a single sample
 ```
 NGS_batch_pipeline(<dataset_name>, <read_directory>, {<adapter1>,... <adapterN>});`
 ```
+Executes the pipeline run code for every sample within a dataset directory. In the galaxy dataset folder, you should organize your files with a dataset folder containing each individual sample you plan to analyze.The order of folders should look like this.
+> galaxy_dataset -> dataset -> samples -> reads_folder & bowtie2_bam -> individual adapter files
 ---
+### Function Parameter Definitions
+`<dataset_name>`: String with the name of the target dataset directory within the galaxy_dataset directory
+
+`<sample_name>`: String with the name of the target sample to search for
+
+`<read_directory>`: String with the name of the directory to use naive exact matching on. By convention it should be `"cutadapt"` for untrimmed reads or `"trimmomatic"` for trimmed reads.
+
+`{<adapter1>,... <adapterN>}`: A cell array with the name of each adapter of interest in the form of a string or character array. 
+
+`<adapter>`: A string with the name of a single adapter
+
+---
+## Individual Function Calls
+> It is recommended that you use the pipeline functions above and just change the starting step in the settings. Using the individual functions is more complex due to the lazy-import implementation. In general, step 1 must always be run first before any others.
+
 ### Step 1: Import fastqsanger
 ```
 step1_import_fastq(<dataset_name>, <sample_name>, <read_directory>, {<adapter1>,... <adapterN>});
@@ -69,6 +79,12 @@ Compares the NEM and bowtie2 counts of a specific adapter for a given sample and
 step5_combine_adapters(<dataset_name>,<sample_name>, {<adapter1>,... <adapterN>})
 ```
 Combines the final count for each adapter onto one table for ease of analysis.
+
+### Convert guide library .csv to a .mat table
+```
+guide_lib_csv2table("<name_of_csv_file>");
+```
+Converts a csv file with the guide library into a mat file for the pipeline to read. The column order should be the Guide RNA ID, Guide RNA Sequence, Cutting Score, Guide Position, and Library Design Information. See the included CSV file in guide_library for reference. 
 
 ---
 ## NGS_Settings.m
