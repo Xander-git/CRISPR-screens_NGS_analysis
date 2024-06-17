@@ -15,9 +15,9 @@ function [status, msg, err] = NGS_pipeline(collection, sample, read_dir, adapter
 
     
     if NGS_SETTINGS.cpu_cores == true
-        cpu_cores = gpuDeviceCount("available");
+        cpu_cores = str2num(getenv("NUMBER_OF_PROCESSORS"));
     else
-        cpu_cores = NGS_SETTINGS.cpu_cores;
+        cpu_cores = NGS_SETTINGS.cpu_cores
     end    
 
     starting_step =NGS_SETTINGS.start_step %#ok<NOPRT> 
