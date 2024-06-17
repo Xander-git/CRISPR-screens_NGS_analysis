@@ -122,7 +122,7 @@ function [status,msg,err]=step3_bowtie2(collection, sample_name, adapter)
         
 
         ReadAll=vertcat(chromosomes_cArr{:});
-        msg = ">> Finished compiling alignment sequences...final size: " + length(ReadAll);
+        msg = ">> Finished compiling alignment sequences...final size: " + length(ReadAll) + "\n";
         fprintf(msg);
         
         msg = ">> Beginning final processing procedures...";
