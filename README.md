@@ -20,16 +20,6 @@ $ git clone https://github.com/Xander-git/CRISPR-screens_NGS_analysis.git
 > `NGS_batch_pipeline("example_dataset", "trimmomatic",{"1665","1666"});`
 ---
 ## Pipeline Syntax
-### Function Parameter Definitions
-`<dataset_name>`: String with the name of the target dataset directory within the galaxy_dataset directory
-
-`<sample_name>`: String with the name of the target sample to search for
-
-`<read_directory>`: String with the name of the directory to use naive exact matching on. By convention it should be `"cutadapt"` for untrimmed reads or `"trimmomatic"` for trimmed reads.
-
-`{<adapter1>,... <adapterN>}`: A cell array with the name of each adapter of interest in the form of a string or character array. 
-
-`<adapter>`: A string with the name of a single adapter
 
 ### Pipeline Run
 ```
@@ -41,7 +31,24 @@ Executes the code for step 1-5 on every adapter for a single sample
 ```
 NGS_batch_pipeline(<dataset_name>, <read_directory>, {<adapter1>,... <adapterN>});`
 ```
+Executes the pipeline run code for every sample within a dataset directory. In the galaxy dataset folder, you should organize your files with a dataset folder containing each individual sample you plan to analyze.The order of folders should look like this.
+> galaxy_dataset -> dataset -> samples -> reads_folder & bowtie2_bam -> individual adapter files
 ---
+### Function Parameter Definitions
+`<dataset_name>`: String with the name of the target dataset directory within the galaxy_dataset directory
+
+`<sample_name>`: String with the name of the target sample to search for
+
+`<read_directory>`: String with the name of the directory to use naive exact matching on. By convention it should be `"cutadapt"` for untrimmed reads or `"trimmomatic"` for trimmed reads.
+
+`{<adapter1>,... <adapterN>}`: A cell array with the name of each adapter of interest in the form of a string or character array. 
+
+`<adapter>`: A string with the name of a single adapter
+
+---
+## Individual Function Calls
+> It is recommended that you use the pipeline functions above and just change the starting step in the settings. Using the individual functions is more complex due to the lazy-import implementation. In general, step 1 must always be run first before any others.
+
 ### Step 1: Import fastqsanger
 ```
 step1_import_fastq(<dataset_name>, <sample_name>, <read_directory>, {<adapter1>,... <adapterN>});
