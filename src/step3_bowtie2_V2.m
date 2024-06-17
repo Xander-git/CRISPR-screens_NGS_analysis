@@ -96,7 +96,7 @@ function [status,msg,err]=step3_bowtie2(collection, sample_name, adapter)
         
         chromosomes_cArr={};
         for i = 1:length(bm_cArr)
-            msg = ">> Starting alignment counting for chromosome number: " + i + "\n";
+            msg = ">> Starting alignment sequence import for chromosome number: " + i + "\n";
             fprintf(msg);
             curr_bm = bm_cArr{i};
             start = curr_bm.Start;
