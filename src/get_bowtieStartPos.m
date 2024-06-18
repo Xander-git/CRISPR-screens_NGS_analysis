@@ -45,11 +45,6 @@
 % seperate chromosome to allow for the aligment of the entire library.
 
 function chromosome_startPosit=get_bowtieStartPos(fpath_bam_data)
-    NGS_SETTINGS = NGS_settings();
-    func_name="step3_bowtie2";
-    
-
-        
     %%
     tic
     bamFilename = fpath_bam_data; %This file will be the result of running bowtie on 'Examplefile1_Cas9.fastqsanger' against the genome file 'CLIB89+control_Cas9.fasta'
