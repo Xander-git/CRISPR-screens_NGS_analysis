@@ -4,8 +4,8 @@ fprintf(">> [%s] STARTING EXECUTION(NGS_batch_pipeline)...", datetime('now',Form
 NGS_SETTINGS = NGS_settings();
 
 warning('off',"MATLAB:MKDIR:DirectoryExists")
-mkdir("../log");
-log = fopen('../log/batch_pipeline_log.txt','w');
+mkdir("./log");
+log = fopen('./log/batch_pipeline_log.txt','w');
 
 collection = string(collection) %#ok<NOPRT> 
 

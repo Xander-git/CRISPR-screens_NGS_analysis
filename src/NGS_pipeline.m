@@ -4,8 +4,8 @@ function [status, msg, err] = NGS_pipeline(collection, sample, read_dir, adapter
     disp("-------------------------------------------------------------------")
     
     warning('off',"MATLAB:MKDIR:DirectoryExists")
-    mkdir("../log");
-    log = fopen("../log/pipeline_log.txt","w");
+    mkdir("./log");
+    log = fopen("./log/pipeline_log.txt","w");
     
 
     msg = sprintf(">> [%s] STARTING EXECUTION(%s)...\n",...
