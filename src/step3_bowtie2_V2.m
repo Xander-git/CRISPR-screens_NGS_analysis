@@ -29,8 +29,10 @@
 % https://www.mathworks.com/matlabcentral/fileexchange/23333-determine-and-count-unique-values-of-an-array
 
 
-%Author: Adithya Ramesh
+%Original Author: Adithya Ramesh
 %PhD Candidate, Wheeldon Lab
+% Improved by: Alexander Nguyen
+% Undergraduate, Wheeldon Lab
 %UC Riverside, 900 University Ave
 %Riverside, CA-92507, USA
 %Email: arame003@ucr.edu
@@ -42,7 +44,7 @@
 % extra chromosome here as all the nontargeting sgRNA were added as a
 % seperate chromosome to allow for the aligment of the entire library.
 
-function [status,msg,err]=step3_bowtie2(collection, sample_name, adapter)
+function [status,msg,err]=step3_bowtie2_V2(collection, sample_name, adapter)
     NGS_SETTINGS = NGS_settings();
     func_name="step3_bowtie2";
     
@@ -74,7 +76,7 @@ function [status,msg,err]=step3_bowtie2(collection, sample_name, adapter)
                 fprintf(">> Found Bowtie Reference: " + info.ScannedDictionary{i} + "\n");
                 bm_cArr = [bm_cArr,{bm_tmp}];
             catch
-                fprintf(">> Could not read reference: "+info.ScannedDictionary{i}+" (If reference = unmapped, ignore this warning)\n");
+                fprintf(">> Warning: Could not read reference: "+info.ScannedDictionary{i}+" (If reference = unmapped, ignore this warning)\n");
             end
         end
         fprintf(">> Amount of references found: " + length(bm_cArr)+"\n");
@@ -91,12 +93,11 @@ function [status,msg,err]=step3_bowtie2(collection, sample_name, adapter)
         % refers to the chromosome, a flag of 0 or 1 mean Top and Bottom strands
         % respectively, and the remaining is the actual start position of the
         % sgRNA. So this sgRNA is found at the 25000 position on the bottom strand
-        % in the 8th chromosome. Actions here are repeated for all 6 chromosomes
-        % in Y. lipolytica (A,B,C,D,E,F).
+        % in the 8th chromosome. 
         
         chromosomes_cArr={};
         for i = 1:length(bm_cArr)
-            msg = ">> Starting alignment sequence import for chromosome number: " + i + "\n";
+            msg = ">> Starting start position search for chromosome number: " + i + "\n";
             fprintf(msg);
             curr_bm = bm_cArr{i};
             start = curr_bm.Start;
@@ -113,7 +114,7 @@ function [status,msg,err]=step3_bowtie2(collection, sample_name, adapter)
             chromosome={};
             chromosome(:,1)=num2cell(fn);
             chromosome(:,2)=curr_bm.Sequence;
-            msg = ">> Preview of Aligment Matrix: \n";
+            msg = ">> Preview of start position & sequence matrix: \n";
             fprintf(msg);
             chromosome(1:5,:) %#ok<NOPRT> 
             chromosomes_cArr=[chromosomes_cArr,{chromosome}];
@@ -122,7 +123,7 @@ function [status,msg,err]=step3_bowtie2(collection, sample_name, adapter)
         
 
         ReadAll=vertcat(chromosomes_cArr{:});
-        msg = ">> Finished compiling alignment sequences...final size: " + length(ReadAll) + "\n";
+        msg = ">> Finished compiling start position...final size: " + length(ReadAll) + "\n";
         fprintf(msg);
         
         msg = ">> Beginning final processing procedures...";

@@ -1,4 +1,4 @@
-function [status, msg, err] = guide_lib_csv2table(guide_rna)
+function [status, msg, err] = guidelib_csv2table(guide_rna)
     NGS_SETTINGS = NGS_settings();
     func_name="guide_rna_csv2table";
     try

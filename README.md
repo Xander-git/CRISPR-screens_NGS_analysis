@@ -25,12 +25,16 @@ $ git clone https://github.com/Xander-git/CRISPR-screens_NGS_analysis.git
 ```
 NGS_pipeline(<dataset_name>, <sample_name>, <read_directory>, {<adapter1>,... <adapterN>});
 ```
+> Use Cases: When each sample within a dataset has different adapters to target, or if batch pipeline gets cut off 
+
 Executes the code for step 1-5 on every adapter for a single sample
 
 ### Batch Run
 ```
 NGS_batch_pipeline(<dataset_name>, <read_directory>, {<adapter1>,... <adapterN>});`
 ```
+> Use Cases: When an entire dataset uses the same adapters
+
 Executes the pipeline run code for every sample within a dataset directory. In the galaxy dataset folder, you should organize your files with a dataset folder containing each individual sample you plan to analyze.The order of folders should look like this.
 > galaxy_dataset -> dataset -> samples -> reads_folder & bowtie2_bam -> individual adapter files
 ---
@@ -76,15 +80,23 @@ Compares the NEM and bowtie2 counts of a specific adapter for a given sample and
 
 ### Step 5: Combine Adapters for each Sample
 ```
-step5_combine_adapters(<dataset_name>,<sample_name>, {<adapter1>,... <adapterN>})
+step5_combine_adapters(<dataset_name>, <sample_name>, {<adapter1>,... <adapterN>})
 ```
 Combines the final count for each adapter onto one table for ease of analysis.
 
+---
+## Helper Functions 
 ### Convert guide library .csv to a .mat table
 ```
-guide_lib_csv2table("<name_of_csv_file>");
+guidelib_csv2table("<name_of_csv_file>");
 ```
 Converts a csv file with the guide library into a mat file for the pipeline to read. The column order should be the Guide RNA ID, Guide RNA Sequence, Cutting Score, Guide Position, and Library Design Information. See the included CSV file in guide_library for reference. 
+
+### Get bowtie2 start positions
+```
+get_bowtieStartPos("<fpath_to_bamfile>")
+```
+A helper function to get the starting positions from bowtie2 given a bam file. The function returns a matlab table with the bowtie2 reference id, the start position, and the corresponding sequence.
 
 ---
 ## NGS_Settings.m
