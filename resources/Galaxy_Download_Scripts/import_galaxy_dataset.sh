@@ -1,8 +1,8 @@
 #!/bin/bash
 
 import_galaxy () {
-    local dataset_label="$3"
-    local sample_name="$2"
+    local dataset_label="$2"
+    local sample_name="$3"
     local galaxy_id="$1"
 
     local readfile_url="$4"
